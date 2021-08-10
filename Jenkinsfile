@@ -20,8 +20,8 @@ slaveTemplates.dockerTemplate { label ->
               -t ${awsRegistry}/${imageName}:${scmVars.GIT_COMMIT} \
               --build-arg PYTHON_BASE_IMAGE='python:3.8-slim-buster' \
               --build-arg AIRFLOW_VERSION='2.0.1' \
-              --build-arg AIRFLOW_INSTALLATION_METHOD='.', \
-              --build-arg AIRFLOW_SOURCES_FROM='.', \
+              --build-arg AIRFLOW_INSTALLATION_METHOD='.' \
+              --build-arg AIRFLOW_SOURCES_FROM='.' \
               --build-arg AIRFLOW_SOURCES_TO='.'"
             sh "docker push ${awsRegistry}/${imageName}:${env.BRANCH_NAME}"
             sh "docker push ${awsRegistry}/${imageName}:${scmVars.GIT_COMMIT}"
