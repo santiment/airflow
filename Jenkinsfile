@@ -24,7 +24,8 @@ slaveTemplates.dockerTemplate { label ->
               --build-arg AIRFLOW_INSTALLATION_METHOD='.' \
               --build-arg AIRFLOW_SOURCES_FROM='.' \
               --build-arg AIRFLOW_SOURCE_TO='/opt/airflow' \
-              --build-arg INSTALL_FROM_PYPI='false'"
+              --build-arg INSTALL_FROM_PYPI='false' \
+              --build-arg ADDITIONAL_PYTHON_DEPS='psycopg2 psycopg2-binary'"
             sh "docker push ${awsRegistry}/${imageName}:${env.BRANCH_NAME}"
             sh "docker push ${awsRegistry}/${imageName}:${scmVars.GIT_COMMIT}"
           }
