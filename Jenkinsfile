@@ -17,7 +17,7 @@ slaveTemplates.dockerTemplate { label ->
           docker.withRegistry("https://${awsRegistry}", "ecr:eu-central-1:ecr-credentials") {
 
             	sh 'echo "Install bash package ..."'
-	            def apkInstallStatus = sh(returnStatus: true, returnStdout: true, script: 'apk add --no-cache bash')
+	            def apkInstallStatus = sh(returnStatus: true, returnStdout: true, script: 'apk add --no-cache bash ncurses')
               if (apkInstallStatus != 0) {
                 currentBuild.result = 'FAILED'
                 error 'apk install failed'
