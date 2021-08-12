@@ -1244,6 +1244,7 @@ class SchedulerJob(BaseJob):  # pylint: disable=too-many-instance-attributes
         return len(event_buffer)
 
     def _execute(self) -> None:
+        self.log.info("-------------------------------------- Hello from fork---------------------------------")
         self.log.info("Starting the scheduler")
 
         # DAGs can be pickled for easier remote execution by some executors
