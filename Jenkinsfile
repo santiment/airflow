@@ -16,7 +16,7 @@ slaveTemplates.dockerTemplate { label ->
 
           docker.withRegistry("https://${awsRegistry}", "ecr:eu-central-1:ecr-credentials") {
 
-            sh "./breeze build-image --production-image --python 3.8  --installation-method .  \
+            sh " bash ./breeze build-image --production-image --python 3.8  --installation-method .  \
                 --image-tag ${awsRegistry}/${imageName}:${env.BRANCH_NAME}"
             sh "docker push ${awsRegistry}/${imageName}:${env.BRANCH_NAME}"
           }
