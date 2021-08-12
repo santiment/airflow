@@ -17,10 +17,10 @@ slaveTemplates.dockerTemplate { label ->
           docker.withRegistry("https://${awsRegistry}", "ecr:eu-central-1:ecr-credentials") {
 
             	sh 'echo "Install bash package ..."'
-	            def aptinstStatus = sh(returnStatus: true, returnStdout: true, script: 'export DEBIAN_FRONTEND=noninteractive && apt-get update && apt-get install -y bash')
-              if (aptinstStatus != 0) {
+	            def apkInstallStatus = sh(returnStatus: true, returnStdout: true, script: 'apk add --no-cache wget')
+              if (apkInstallStatus != 0) {
                 currentBuild.result = 'FAILED'
-                error 'apt install failed'
+                error 'apk install failed'
               }
 
             sh " bash ./breeze build-image --production-image --python 3.8  --installation-method .  \
