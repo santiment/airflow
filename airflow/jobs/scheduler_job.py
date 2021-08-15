@@ -1754,6 +1754,8 @@ class SchedulerJob(BaseJob):
                     len(currently_active_runs),
                     dag_run.execution_date,
                 )
+                dag_run.last_scheduling_decision = timezone.utcnow()
+                session.merge(dag_run)
                 return 0
 
         self._verify_integrity_if_dag_changed(dag_run=dag_run, session=session)
